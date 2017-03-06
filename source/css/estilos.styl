@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+texto = #111111
+principal = #eff2f7
+secundario = #1246c1
+tercero = rgba(255, 255, 255, 0.82)
+cuarto = rgba(15, 65, 197, 0.13)
+
+html
+	font-size 15px
+body 
+	color texto
+	background principal
+	font-family: 'Open Sans', sans-serif;
+a
+	cursor pointer
+.dropdown-menu
+	width 100%
+.encabezado
+	background #fff
+	color secundario
+	border-bottom 2px solid secundario
+	.row
+		padding 5px 0px
+	.logo
+		img
+			width 180px
+			height auto
+	.btn-salir
+		font-size 0.9rem
+		a
+			color secundario
+			text-decoration none
+		:hover
+			color texto
+	h2
+		margin-bottom 0
+.nav-tabs
+	border-bottom none
+	border-top 1px solid #ddd
+.navbar-light .navbar-nav .nav-link
+	color secundario
+.navbar-light .navbar-nav .nav-link:hover
+	background cuarto
+.navbar-light .navbar-nav .active> .nav-link
+	background cuarto
+.contenedor
+	margin-top 130px
+	margin-bottom 30px
+	.items
+		min-height 450px
+	.item
+		margin-bottom 5px
+		a
+			display block
+			margin 15px 36px
+			text-decoration none
+			list-style none
+			color secundario
+		a:hover
+			color texto
+		i
+			font-size 60px
+.fila-info
+	td
+		padding 0
+fieldset
+	border-bottom 1px solid cuarto
+	margin-top 10px
+	margin-bottom 10px
+	padding-bottom 19px	
+.btn_cerrar
+	display none
+.table-total
+	background cuarto
+footer
+	padding 3em
+	background cuarto
+	span
+		font-size 1.3em
+.tag-pill
+	padding .3em
+	border-radius 50%
+	background red
+	position absolute
+	font-size 1.2rem
+	color #fff
+	line-height .8em
+.no-display
+	display none
+.display
+	display block
+
+@media (max-width: 760px)
+	.logo,.titulo,.btn-salir
+		margin-bottom 5px
+	.titulo
+		h1
+			font-size 28px
+	.contenedor
+		margin-top 170px
+	.encabezado
+		.row
+			padding 0
+	.ver_m
+		display none
+	
