@@ -1,10 +1,10 @@
 //Variables Globales
-
 var url = "http://localhost:3001/api";
 
-
 $(document).ready(function(){ 
-  listarTurnos(); 
+
+  function datepickerConf(){
+  //Funcion para poner datepicker en español
   $(function($){
     $.datepicker.regional['es'] = {
         closeText: 'Cerrar',
@@ -26,31 +26,23 @@ $(document).ready(function(){
     $.datepicker.setDefaults($.datepicker.regional['es']);
   });
 
-  
+  // activamos Datepicker
   $( ".datepicker" ).datepicker(); 
+  
+  }
 
+  // agregamos la clase "active" al elemento del menú que se encuentra activo en el momento
   $.each($('.navbar').find('li'), function() {
         $(this).toggleClass('active', 
             window.location.pathname.indexOf($(this).find('a').attr('href')) > -1);
+    }); 
 
-    });    
 
+  // configuración de Autocompletado de input "Buscar"
+  function autocomplete(){
    var availableTags = [
       "ActionScript",
       "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
       "Lisp",
       "Perl",
       "PHP",
@@ -62,6 +54,8 @@ $(document).ready(function(){
     $( "#buscar" ).autocomplete({
       source: availableTags
     });
+  }
+    // Login 
 
     $('#btnIngresar').click(function(event){
         event.preventDefault();
@@ -91,18 +85,10 @@ $(document).ready(function(){
             "displayName": "Luispachu",
             "labName": "Lace"
         },
-
-        //OR
-        //beforeSend: function(xhr) { 
-        //  xhr.setRequestHeader("My-First-Header", "first value"); 
-        //  xhr.setRequestHeader("My-Second-Header", "second value"); 
-        //}
     }).done(function(data) { 
         var token = data.token;
         window.localStorage.setItem('token', token);
         console.log("Mi nuevo token es:" + token);
-
-
         });
   } //fin signUp
 
@@ -138,7 +124,6 @@ $(document).ready(function(){
             }
 
         });
-
   } // Fin signIn
 
   function listarTurnos(){
@@ -158,15 +143,34 @@ $(document).ready(function(){
           console.log(data);
           var tablaDatos = $('#tablaDatos');
           for (var i = data.appointments.length - 1; i >= 0; i--) {
-           tablaDatos.append("<tr><td>"+data.appointments[i].day+"</td><td>"+data.appointments[i].hour+"</td><td>"+data.appointments[i].specialty+"</td></tr>"); 
+           tablaDatos.prepend("<tr><td>"+i+"</td><td>"+data.appointments[i].day+"</td><td>"+data.appointments[i].hour+"</td><td>"+data.appointments[i].specialty+"</td></tr>"); 
 
          }
         });
-
   } //Fin listarTurnos
 
-    
+  //funcion get url
+  function getURL(){
+   var pathname = window.location.pathname;
+    return pathname
+  }
+
+  // Al cargar página Turnos.html
+  if(getURL()==="/turnos.html"){   
+    autocomplete();
+    listarTurnos(); 
+
+  }
+  // Al cargar página Derivaciones.html
+  if(getURL()==="/resultados.html"){   
+    autocomplete();
+    datepickerConf();
+    console.log("Estamos en los :" + getURL()); 
+  }
+  // Al cargar página Derivaciones.html
+  if(getURL()==="/index.html"){   
+    console.log("Estamos en la web :" + getURL());
+  }
+
   
-
-
-});
+});// Fin document.ready
